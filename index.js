@@ -11,12 +11,13 @@ app.use(express.json())
 const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
 
 app.get("/api", async (req, res) => {
-   
+  
     try {
+           let date = new Date();
         res.status(200).json({
           slack_name: req.query.slack_name,
           current_day: days[date.getDay()],
-          utc_time: new Date().toISOString().slice(0,19) + 'Z',
+          utc_time: date.toISOString().slice(0,19) + 'Z',
           track: req.query.track,
           github_file_url:
             "https://github.com/Emeey-Lanr/HNG/blob/master/index.js",
@@ -24,6 +25,7 @@ app.get("/api", async (req, res) => {
           status_code: 200,
         });
     } catch (error) {
+      
         res.status(400).json({message:error.message, status:400})
     }
    
