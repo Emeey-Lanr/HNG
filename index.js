@@ -5,15 +5,17 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
-const date = new Date()
+
+
 const days = ["Sunday","Monday", "Tuesday","Wednesday", "Thursday", "Friday", "Saturday" ]
+
 
 app.get("/api", async (req, res) => {
     try {
         res.status(200).json({
           slack_name: req.query.slack_name,
           current_day: days[date.getDay()],
-          utc_time: date.toISOString().split(".")[0] + "Z",
+          utc_time: new Date().toUTCString(),
           track: req.query.track,
           github_file_url:
             "https://github.com/Emeey-Lanr/HNG/blob/master/index.js",
