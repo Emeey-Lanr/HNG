@@ -16,8 +16,8 @@ app.get("/api", async (req, res) => {
           current_day:  days[date.getDay()],
           utc_time: date.toISOString(),
           track: req.query.track,
-          github_file_url:"https://github.com/username/repo/blob/main/file_name.ext",
-          github_repo_url: "https://github.com/username/repo",
+          github_file_url:"https://github.com/Emeey-Lanr/HNG/blob/master/index.js",
+          github_repo_url: "https://github.com/Emeey-Lanr/HNG.git",
           status_code: 200,
         });
     } catch (error) {
