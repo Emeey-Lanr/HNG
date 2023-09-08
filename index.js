@@ -18,7 +18,7 @@ app.get("/api", async (req, res) => {
         res.status(200).json({
           slack_name: req.query.slack_name,
           current_day: days[date.getDay()],
-          utc_time: date.toISOString(),
+          utc_time: date.toISOString().split(".")[0]+'Z',
           track: req.query.track,
           github_file_url:
             "https://github.com/Emeey-Lanr/HNG/blob/master/index.js",
