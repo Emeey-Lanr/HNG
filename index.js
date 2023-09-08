@@ -1,24 +1,25 @@
 const express = require("express")
 const cors = require("cors")
 require("dotenv").config()
+
 const app = express()
 app.use(cors())
 app.use(express.json())
 
 
-
-const days = ["Sunday","Monday", "Tuesday","Wednesday", "Thursday", "Friday", "Saturday" ]
-let date  = new Date()
-let random = Math.floor(Math.random() * 240001) - 120000;
-
-date.setTime(date.getTime() + random)
-
+const date = new Date()
+const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+const time = ()=>{
+  return date.toISOString().slice(0,19)+'Z'
+}
 app.get("/api", async (req, res) => {
+ 
     try {
         res.status(200).json({
+            minutes:date.getMinutes(),
           slack_name: req.query.slack_name,
           current_day: days[date.getDay()],
-          utc_time: date.toISOString().split(".")[0]+'Z',
+          utc_time:time() ,
           track: req.query.track,
           github_file_url:
             "https://github.com/Emeey-Lanr/HNG/blob/master/index.js",
